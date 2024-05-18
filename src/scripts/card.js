@@ -2,8 +2,8 @@
 const cardTemplate = document.querySelector('#card-template').content;
 
 // @todo: DOM узлы
-const content = document.querySelector('.content');
-const placesList = document.querySelector('.places__list');
+//const content = document.querySelector('.content');
+//const placesList = document.querySelector('.places__list');
 
 // @todo: Функция создания карточки
 function createCard (element, deleteCard, likeCard, openPopUp) {
