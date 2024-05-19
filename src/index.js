@@ -16,22 +16,22 @@ const profileImage = document.querySelector('.profile__image');
 profileImage.style.backgroundImage = urlAvatar;
 const profileEditButton = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
-const PopUpForm = editPopUp.querySelector('.popup__form').elements.name.value;
+const editProfileForm = editPopUp.querySelector('.popup__form');
 
 function editProfile() {
-  editPopUp.querySelector('.popup__form').elements.name.value = profileTitle.textContent;
-  editPopUp.querySelector('.popup__form').elements.description.value = profileDescription.textContent;
+  editProfileForm.elements.name.value = profileTitle.textContent;
+  editProfileForm.elements.description.value = profileDescription.textContent;
   togglePopUp(editPopUp)
 }
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-  profileTitle.textContent = PopUpForm;
-  profileDescription.textContent = editPopUp.querySelector('.popup__form').elements.description.value;
+  profileTitle.textContent = editProfileForm.elements.name.value;
+  profileDescription.textContent = editProfileForm.elements.description.value;
   togglePopUp(editPopUp)
 }
 
-function openPopUpAdd(evt) {
+function handleAddCard(evt) {
   evt.preventDefault();
   const placeFields = addPopUp.querySelector('.popup__form').elements;
   const newCardInfo = {
@@ -67,7 +67,7 @@ function initial() {
   editPopUp.querySelector('.popup__close').addEventListener('click', () => togglePopUp(editPopUp));
   editPopUp.addEventListener('click', pressOverlay);
   addCardButton.addEventListener('click', () => togglePopUp(addPopUp));
-  addPopUp.querySelector('.popup__form').addEventListener('submit', openPopUpAdd);
+  addPopUp.querySelector('.popup__form').addEventListener('submit', handleAddCard);
   addPopUp.querySelector('.popup__close').addEventListener('click', () => togglePopUp(addPopUp));
   addPopUp.addEventListener('click', pressOverlay);
   imgPopUpType.querySelector('.popup__close').addEventListener('click', () => togglePopUp(imgPopUpType));
