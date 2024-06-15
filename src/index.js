@@ -27,9 +27,9 @@ const validData = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_inactive',
-  errorClass: 'popup__input_type_error',
-  spanErrorClass: 'popup__error_visible'
+  inactiveButtonClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible',
+  spanErrorClass: 'form__input-error_active'
 };
 
 function editProfile() {
@@ -121,7 +121,7 @@ function initialUser(user) {
 
 function clickAddNewCard() {
   clearValidation(addPopUp, validData);
-  toggleButtonState(addPopUp.querySelector('.popup__form'), validData);
+  toggleButtonState(addPopUp, validData);
   togglePopUp(addPopUp);
 }
 
@@ -157,5 +157,4 @@ function initial() {
     })
     .catch(err => console.log(err));
 }
-
 initial();
