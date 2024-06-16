@@ -46,9 +46,17 @@ function clickEditAvatar() {
   togglePopUp(editAvatarPopUp);
 }
 
+function changeButtonText(button, isSaving) {
+  if (isSaving) {
+    button.textContent = 'Сохранение...';
+  } else {
+    button.textContent = 'Сохранить';
+  }
+}
+
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-  buttonProfileSave.textContent = 'Сохранение...';
+  changeButtonText(buttonProfileSave, true);
   patchUserApi(editProfileForm.elements.name.value, editProfileForm.elements.description.value)
     .then(response => {
       if (response.flag) {
@@ -58,12 +66,12 @@ function handleProfileFormSubmit(evt) {
       }
     })
     .catch(err => console.log(err))
-    .finally(() => { buttonProfileSave.textContent = 'Сохранить'; });
+    .finally(() => { changeButtonText(buttonProfileSave, false); });
 }
 
 function handleEditAvatarFormSubmit(evt) {
   evt.preventDefault();
-  buttonAvatarSave.textContent = 'Сохранение...';
+  changeButtonText(buttonAvatarSave, true);
   changeAvatarApi(avatarField.value)
     .then(response => {
       if (response.flag) {
@@ -73,7 +81,7 @@ function handleEditAvatarFormSubmit(evt) {
       }
     })
     .catch(err => console.log(err))
-    .finally(() => { buttonAvatarSave.textContent = 'Сохранить'; });
+    .finally(() => { changeButtonText(buttonAvatarSave, false); });
 }
 
 function handleAddCard(evt, userId) {
@@ -83,7 +91,7 @@ function handleAddCard(evt, userId) {
     name: placeFields['place-name'].value,
     link: placeFields['link'].value
   };
-  buttonNewCardSave.textContent = 'Сохранение...';
+  changeButtonText(buttonNewCardSave, true);
   addCardApi(newCardData)
     .then(response => {
       if (response.flag) {
@@ -94,7 +102,7 @@ function handleAddCard(evt, userId) {
       }
     })
     .catch(err => console.log(err))
-    .finally(() => { buttonNewCardSave.textContent = 'Сохранить'; });
+    .finally(() => { changeButtonText(buttonNewCardSave, false); });
 }
 
 function openPopUpImg(data) {
